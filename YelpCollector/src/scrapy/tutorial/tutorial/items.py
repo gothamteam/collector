@@ -5,7 +5,9 @@
 
 from scrapy.item import Item, Field
 
-class TutorialItem(Item):
+class DmozItem(Item):
     # define the fields for your item here like:
     # name = Field()
-    pass
+    title = Field()
+    link = Field()
+    desc = Field()
