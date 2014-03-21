@@ -1,1 +1,1 @@
-print "shusen  wang  hello"
+print "good "
