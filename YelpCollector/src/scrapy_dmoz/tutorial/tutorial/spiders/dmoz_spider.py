@@ -2,7 +2,7 @@ from scrapy.spider import Spider
 from scrapy.selector import Selector
 
 from tutorial.items import DmozItem
-class DmozSpider(Spider):
+class dmozSpider(Spider):
     name = "dmoz"
     allowed_domains = ["dmoz.org"]
     start_urls = [
