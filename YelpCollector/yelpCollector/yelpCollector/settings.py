@@ -11,5 +11,8 @@ BOT_NAME = 'yelpCollector'
 SPIDER_MODULES = ['yelpCollector.spiders']
 NEWSPIDER_MODULE = 'yelpCollector.spiders'
 
+FEED_URI= 'jsondata.json'  
+FEED_FORMAT= 'json'
+LOG_LEVEL ='DEBUG'
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
 #USER_AGENT = 'yelpCollector (+http://www.yourdomain.com)'
