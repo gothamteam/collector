@@ -1,3 +1,7 @@
+#1. read generated categorizedUrls.txt
+#2. scrapy the page category and number of records
+#3. generate all urls for each category given the number of records
+
 import json
 
 #get the name of the category file from input.tx
@@ -12,6 +16,14 @@ LocationFileName=LocationFileName.replace(",", "_")
 content[1]=content[1].replace(" ", "%20");
 content[1]=content[1].replace(",", "%2C");
 
+
+CategoriizedURLs= '../generated/yelp'+content[0]+LocationFileName+'CategorizedURLs.txt'
+
+with open(CategoriizedURLs) as file:
+    content = file.readlines()
+
+
+
 categoryFile= '../fetched/yelp'+content[0]+LocationFileName+'Categories.json' 
 
 #load Json file with category data
@@ -19,7 +31,7 @@ file2= open(categoryFile)
 categoryData = json.load(file2)
 
 #write file with urls for different categories
-file3= open('../generated/yelp'+content[0]+LocationFileName+'CategorizedURLs.txt','w')
+file3= open('../generated/yelp'+content[0]+LocationFileName+'CategoriizedURLs.txt','w')
 
 
 for item in categoryData:

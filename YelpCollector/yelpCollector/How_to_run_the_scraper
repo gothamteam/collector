@@ -6,4 +6,8 @@ New York, NY
 
 3. run generateUrlListCategorized.py
 
+4. runScrapy_collectCategories_withNumberOfRecords.py
+
+5. run generateUrlListSubCategorizedByPriceIfMoreThan1000.py
+
 4. run generateUrlListCategorizedWithPageNumber

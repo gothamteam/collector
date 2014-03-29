@@ -2,7 +2,7 @@ from scrapy.spider import Spider
 from scrapy.selector import Selector
 import json
 
-from yelpCollector.items import RestaurantItem,categoryItem
+from yelpCollector.items import RestaurantItem,categoryItem,NumberofRecordsItem
 class yelpSpider(Spider):
     
     name = "yelpSpider"
@@ -82,3 +82,52 @@ class yelpCategorySpider(Spider):
             categoryList['category'] = site.xpath('label/input/@value').extract()
             categoryLists.append(categoryList)
         return categoryLists
+    
+    #category Spider    
+class yelpNumberOfRecordsSpider(Spider):
+    name = "yelpNumberOfRecordsSpider"
+    allowed_domains = ["http://www.yelp.com/"]
+    start_urls=[
+    ]
+    def __init__(self):
+        super(Spider, self).__init__()
+        self.getInput()
+    
+    #get the search field from input.txt
+    def getInput(self):
+        with open("store/input.txt") as file:
+            content = file.readlines()
+            self.start_urls=content
+            content[0]=content[0].strip('\n')
+            content[1]=content[1].strip('\n')
+            LocationFileName=content[1].replace(" ", "_")
+            LocationFileName=LocationFileName.replace(",", "_")
+
+            CategoriizedURLs= 'generated/yelp'+content[0]+LocationFileName+'CategorizedURLs.txt'
+            
+        with open(CategoriizedURLs) as file:
+            content = file.readlines()
+            self.start_urls=content
+    def parse(self, response):
+        jsonresponse=json.loads(response.body)
+        response=response.replace(body=jsonresponse["search_header"])
+        response2=response.replace(body=jsonresponse["search_filters"])
+        sel = Selector(response)
+        sel2= Selector(response2)
+        sites = sel.xpath('//span[@class="pagination-results-window"]')
+        sites2 = sel2.xpath('//div[@class="filter-set place-filters"]/ul/li/label/input[@checked="checked"]')
+        items = []
+        for site in sites:
+            item = NumberofRecordsItem()
+            item['numberOfRecords']= site.xpath('./text()').extract()
+            item['category']= sites2.xpath('./@value').extract()
+            
+            #trim the content
+            item['numberOfRecords'] = [i.strip() for i in item['numberOfRecords']]
+            
+            
+            
+            
+            items.append(item)
+        return items
+    

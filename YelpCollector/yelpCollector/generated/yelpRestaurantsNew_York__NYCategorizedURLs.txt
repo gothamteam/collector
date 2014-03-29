@@ -356,7 +356,6 @@ http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3AHasbrouck_Heights%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3AHastings_Hdsn%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3AHastings-on-Hudson%3A%3A
-http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3AHaworth%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3AHawthorne%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3AHazlet%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3AHempstead%3A%3A
@@ -463,7 +462,6 @@ http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3ARivervale%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3ARochelle_Park%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3ARockaway_Beac%3A%3A
-http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3ARockaway_Beach%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3ARockville_Centre%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3ARoseland%3A%3A
 http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&l=p%3ANJ%3ARoselle_Park%3A%3A

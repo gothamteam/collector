@@ -22,3 +22,7 @@ class RestaurantItem(Item):
     
 class categoryItem(Item):
     category=Field()
+
+class NumberofRecordsItem(Item):
+    category=Field()
+    numberOfRecords=Field()
