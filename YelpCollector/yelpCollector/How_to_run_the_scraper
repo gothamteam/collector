@@ -1,0 +1,9 @@
+1. change the input.txt to eg:
+Restaurants
+New York, NY
+
+2. run runScrapy_collectCategories.py
+
+3. run generateUrlListCategorized.py
+
+4. run generateUrlListCategorizedWithPageNumber

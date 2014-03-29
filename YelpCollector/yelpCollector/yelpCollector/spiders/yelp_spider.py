@@ -5,7 +5,7 @@ import json
 from yelpCollector.items import RestaurantItem,categoryItem
 class yelpSpider(Spider):
     
-    name = "yelp"
+    name = "yelpSpider"
     allowed_domains = ["http://www.yelp.com/"]
     start_urls = [
         "http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AQueens%3AFlushing&parent_request_id=28a3b910a7c56207&request_origin=hash&bookmark=true",
@@ -13,7 +13,6 @@ class yelpSpider(Spider):
     ]
     def __init__(self):
         super(Spider, self).__init__()
-        print 'Do something else'
         with open("generatedUrlLists.txt") as urlList:
             urlListData = urlList.readlines()
         #self.start_urls=urlListData
@@ -21,9 +20,7 @@ class yelpSpider(Spider):
     def parse(self, response):
         jsonresponse=json.loads(response.body)
         response=response.replace(body=jsonresponse["search_results"])
-        #print("eeee")
-        #print(response)
-        #print("eee")
+
         sel = Selector(response)
         sites = sel.xpath('//ul/li/div')
         items = []
@@ -53,12 +50,29 @@ class yelpSpider(Spider):
         return items
     
 #category Spider    
-class yelpRestaurantCategory(Spider):
-    name = "yelpRestaurantCategory"
+class yelpCategorySpider(Spider):
+    name = "yelpCategorySpider"
     allowed_domains = ["http://www.yelp.com/"]
-    start_urls = [
-       "http://www.yelp.com/search?find_desc=restaurants&find_loc=New+York%2C+NY&ns=1#start=0"
-    ]
+   
+    def __init__(self):
+        super(Spider, self).__init__()
+        self.getInput()
+    
+    #get the search field from input.txt
+    def getInput(self):
+        with open("store/input.txt") as file:
+            content = file.readlines()
+        
+        #modify the city and state name so that it is like what is in a url
+        content[1]=content[1].strip('\n')
+        content[1]=content[1].replace(" ", "+");
+        content[1]=content[1].replace(",", "%2C");
+        self.start_urls=[
+                    "http://www.yelp.com/search?find_desc="+content[0].strip('\n')+"&find_loc="+content[1]+"&ns=1"
+        ]
+        
+    start_urls=[]
+    
     def parse(self, response):
         sel = Selector(response)
         sites = sel.xpath('//ul[@class="more place-more"]/li/div/ul/li')
