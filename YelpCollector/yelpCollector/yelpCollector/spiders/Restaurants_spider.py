@@ -9,14 +9,14 @@ class yelpSpider(Spider):
     allowed_domains = ["http://www.yelp.com/"]
     start_urls = [
         "http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AQueens%3AFlushing&parent_request_id=28a3b910a7c56207&request_origin=hash&bookmark=true",
-       "http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AQueens%3AFlushing&parent_request_id=28a3b910a7c56207&request_origin=hash&bookmark=true"
+        "http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AQueens%3AFlushing&parent_request_id=28a3b910a7c56207&request_origin=hash&bookmark=true"
     ]
     def __init__(self):
         super(Spider, self).__init__()
         print 'Do something else'
         with open("generatedUrlLists.txt") as urlList:
             urlListData = urlList.readlines()
-        self.start_urls=urlListData
+        #self.start_urls=urlListData
         print urlListData
     def parse(self, response):
         jsonresponse=json.loads(response.body)
@@ -37,6 +37,13 @@ class yelpSpider(Spider):
             item['category'] = site.xpath('div/div[@class="media-story"]/div[@class="price-category"]/span[@class="category-str-list"]/a/text()').extract()
             item['starRating'] = site.xpath('div/div[@class="media-story"]/div/div[@class="rating-large"]/i/@title').extract()
             item['numberOfReviews'] = site.xpath('div/div[@class="media-story"]/div/span[@class="review-count rating-qualifier"]/text()').extract()
+            
+            #get the geo location for each restaurants
+            key=site.xpath('@data-key').extract()
+            latitude=jsonresponse['search_map']['markers'][key[0]]['location']['latitude']
+            longitude=jsonresponse['search_map']['markers'][key[0]]['location']['longitude']
+            item['geoLocation']=[latitude,longitude]
+            
             #trim the content
             item['neighborhood'] = [i.strip() for i in item['neighborhood']]
             item['phone'] = [i.strip() for i in item['phone']]

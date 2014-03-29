@@ -16,6 +16,7 @@ class RestaurantItem(Item):
     starRating=Field()
     category=Field()
     numberOfReviews=Field()
+    geoLocation=Field()
 
 
     
