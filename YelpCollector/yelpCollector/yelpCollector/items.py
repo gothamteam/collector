@@ -26,3 +26,7 @@ class categoryItem(Item):
 class NumberofRecordsItem(Item):
     category=Field()
     numberOfRecords=Field()
+    
+class NumberofRecordsItem_withUrl(Item):
+    url=Field()
+    numberOfRecords=Field()

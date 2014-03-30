@@ -12,28 +12,42 @@ LocationFileName=LocationFileName.replace(",", "_")
 content[1]=content[1].replace(" ", "%20");
 content[1]=content[1].replace(",", "%2C");
 
-categoryFile= '../fetched/yelp'+content[0]+LocationFileName+'Categories.json' 
+categoryFile= '../fetched/yelp'+content[0]+LocationFileName+'Categories_withNumberOfRecords.json' 
 
 #load Json file with category data
 file2= open(categoryFile)
 categoryData = json.load(file2)
 
 #write file with urls for different categories
-file3= open('../generated/yelp'+content[0]+LocationFileName+'CategorizedURLs.txt','w')
+file3= open('../generated/yelp'+content[0]+LocationFileName+'CategorizedURLs_withPriceRank.txt','w')
 
 
 for item in categoryData:
-    temp=item["category"][0]
-    temp=temp.split(":")
-    str="&l=p%3A"+temp[0]+"%3A"+temp[1]+"%3A"+temp[2]+"%3A"+temp[3]
+    temp=''
+    if item["category"] != []:
+        temp=item["category"][0]
+     
+        temp=temp.split(":")
+        str="&l=p%3A"+temp[0]+"%3A"+temp[1]+"%3A"+temp[2]+"%3A"+temp[3]
     
-    
-    #reference url
-    #{"category": ["NY:New_York:Manhattan:Alphabet_City"]},
-    #url=http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3ANew_York%3AManhattan%3AAlphabet_City&parent_request_id=85a4b039c1d1cedf&request_origin=user
-   
-    url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+str
-    file3.write(  url+"\n") 
+    #whether to include price range
+    if int(item["numberOfRecords"]) >1000:
+         #http://www.yelp.com/search/snippet?find_desc=Restaurants&find_loc=New%20York%2C%20NY&attrs=RestaurantsPriceRange2.2&l=p%3ANY%3ANew_York%3AManhattan%3AAlphabet_City
+         url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+"&attrs=RestaurantsPriceRange2.1"+str
+         file3.write(  url+"\n")
+         url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+"&attrs=RestaurantsPriceRange2.2"+str
+         file3.write(  url+"\n")
+         url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+"&attrs=RestaurantsPriceRange2.3"+str
+         file3.write(  url+"\n")
+         url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+"&attrs=RestaurantsPriceRange2.4"+str
+         file3.write(  url+"\n")
+    else:
+        #reference url
+        #{"category": ["NY:New_York:Manhattan:Alphabet_City"]},
+        #url=http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&l=p%3ANY%3ANew_York%3AManhattan%3AAlphabet_City
+       
+        url="http://www.yelp.com/search/snippet?find_desc="+content[0]+"&find_loc="+content[1]+str
+        file3.write(  url+"\n") 
     
     
 file3.close()
