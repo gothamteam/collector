@@ -6,6 +6,8 @@ from yelpCollector.spiders.yelp_spider import yelpSpider
 import json
 import time
 import multiprocessing
+from multiprocessing import Pool
+
 
 #get the name of the category file from input.tx
 with open("store/input.txt") as file:
@@ -29,10 +31,10 @@ categoryData = json.load(file2)
 print " number of start urls "+str(len(categoryData))
 
 
-
+#processflag
 
 def doScrap(k):
-    
+
     #generate the list of url with start param 
     
     url= categoryData[k]["url"]
@@ -73,13 +75,22 @@ def doScrap(k):
     crawler.crawl(spider)
     crawler.start()
     log.start(loglevel="DEBUG")
-    
+
     reactor.run()
+
+    #crawler.stop()
     
 if __name__ == '__main__':
     jobs = []
+    #pool = Pool(processes=4)  # start 4 worker processes
     for i in range(len(categoryData)):
+        #pool.apply_async(doScrap, args=(i,))
+       
         p = multiprocessing.Process(target=doScrap, args=(i,))
-        jobs.append(p)
+        #jobs.append(p)
         p.start()
+        p.join()
+    #pool.close()
+   # pool.join()
+       
 

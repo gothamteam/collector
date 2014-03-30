@@ -16,7 +16,7 @@ class yelpSpider(Spider):
         with open("generatedUrlLists.txt") as urlList:
             urlListData = urlList.readlines()
         #self.start_urls=urlListData
-        print urlListData
+        #print urlListData
     def parse(self, response):
         jsonresponse=json.loads(response.body)
         response=response.replace(body=jsonresponse["search_results"])
