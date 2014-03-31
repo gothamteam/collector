@@ -39,6 +39,9 @@ def doScrap(k):
     
     url= categoryData[k]["url"]
     numberOfRecords= categoryData[k]["numberOfRecords"]
+    #reset number of record to 1000 if more than 1000
+    if int(numberOfRecords)>1000:
+        numberOfRecords='1000'
     numberOfPages=int(numberOfRecords)/10+1
     newurls=[]
     for i in range(numberOfPages):
@@ -66,6 +69,8 @@ def doScrap(k):
     overrides= {
         'FEED_URI': 'fetched/'+content[0]+content[1]+'/yelp'+content[0]+content[1]+'Results'+str(k)+'.json' , 
         'FEED_FORMAT': 'json',
+        'CONCURRENT_REQUESTS_PER_DOMAIN': '1',
+        'DOWNLOAD_DELAY' : '0.25',   
     }
     settings = get_project_settings()
     settings.overrides.update(overrides)
@@ -82,15 +87,11 @@ def doScrap(k):
     
 if __name__ == '__main__':
     jobs = []
-    #pool = Pool(processes=4)  # start 4 worker processes
-    for i in range(len(categoryData)):
-        #pool.apply_async(doScrap, args=(i,))
-       
-        p = multiprocessing.Process(target=doScrap, args=(i,))
-        #jobs.append(p)
+    #set the startting urls number
+    offset=50
+    #start from middle start urls
+    for i in range(len(categoryData)-offset):
+        p = multiprocessing.Process(target=doScrap, args=(i+offset,))
         p.start()
         p.join()
-    #pool.close()
-   # pool.join()
-       
 

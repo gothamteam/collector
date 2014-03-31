@@ -1,4 +1,0 @@
-http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&parent_request_id=aef42a4402a8144a&request_origin=hash&bookmark=true"
-http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AQueens%3AFlushing&parent_request_id=28a3b910a7c56207&request_origin=hash&bookmark=true
-http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=20&l=p%3ANY%3ANew_York%3AQueens%3ADowntown_Flushing&parent_request_id=322a1b9224480c25&request_origin=hash&bookmark=true
-http://www.yelp.com/search/snippet?find_desc=restaurants&find_loc=New%20York%2C%20NY&start=10&l=p%3ANY%3ANew_York%3AManhattan%3AChinatown&parent_request_id=90dc0180fbfeb5a8&request_origin=hash&bookmark=true
