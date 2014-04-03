@@ -88,7 +88,7 @@ def doScrap(k):
 if __name__ == '__main__':
     jobs = []
     #set the startting urls number
-    offset=50
+    offset=0
     #start from middle start urls
     for i in range(len(categoryData)-offset):
         p = multiprocessing.Process(target=doScrap, args=(i+offset,))
