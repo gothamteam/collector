@@ -13,8 +13,8 @@ class yelpSpider(Spider):
     ]
     def __init__(self):
         super(Spider, self).__init__()
-        with open("generatedUrlLists.txt") as urlList:
-            urlListData = urlList.readlines()
+        #with open("generatedUrlLists.txt") as urlList:
+        #    urlListData = urlList.readlines()
         #self.start_urls=urlListData
         #print urlListData
     def parse(self, response):
