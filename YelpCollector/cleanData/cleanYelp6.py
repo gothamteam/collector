@@ -22,22 +22,26 @@ for num in range(len(data1)):
         for num2 in range(len(json_data)):
             if phone1==json_data[num2]["phone"]:
                 flag=1
+                json_data[num2]["insp_scr"]=str(dict["insp_scr"]).decode('unicode-escape')
         if flag==0:
             print "insert this data"
             print num
-            json_data.append({u"category":dict["category"].decode('unicode-escape'), u"geoLocation":dict["geoLocation"], u"neighborhood":u'', u"name":dict["name"].decode('unicode-escape') ,u"city": u"New York", u"starRating": u'', u"zipcode":str(dict["zipcode"]).decode('unicode-escape'),u"phone":dict["phone"].decode('unicode-escape'), u"priceRange":u'', u"address":dict["address"].decode('unicode-escape'),u"numberOfReviews":u'', u"insp_scr":str(dict["insp_scr"]).decode('unicode-escape')})
+            json_data.append({u"category":[dict["category"].strip().decode('unicode-escape')], u"geoLocation":dict["geoLocation"], u"neighborhood":u'', u"name":dict["name"].decode('unicode-escape') ,u"city": u"New York", u"starRating": u'', u"zipcode":str(dict["zipcode"]).decode('unicode-escape'),u"phone":dict["phone"].decode('unicode-escape'), u"priceRange":u'', u"address":dict["address"].decode('unicode-escape'),u"numberOfReviews":u'', u"insp_scr":str(dict["insp_scr"]).decode('unicode-escape')})
         data1[num]=''
         flag=0
-    
+    else:
+        json_data.append({u"category":[dict["category"].decode('unicode-escape')], u"geoLocation":dict["geoLocation"], u"neighborhood":u'', u"name":dict["name"].decode('unicode-escape') ,u"city": u"New York", u"starRating": u'', u"zipcode":str(dict["zipcode"]).decode('unicode-escape'),u"phone":dict["phone"].decode('unicode-escape'), u"priceRange":u'', u"address":dict["address"].decode('unicode-escape'),u"numberOfReviews":u'', u"insp_scr":str(dict["insp_scr"]).decode('unicode-escape')})
+        data1[num]=''
     
     
 
 print len(json_data)
 
-
+print json_data[43760]
+print json_data[0]
 #with open("data6.json", 'w') as json_file:
-with open("yelpDataInOneFileJsonCleanedUpRemoveDulplicateExtraKeysAddInspectWithPhone.json", 'w') as json_file:
+with open("yelpDataInOneFileJsonCleanedUpRemoveDulplicateExtraKeysAddInspect.json", 'w') as json_file:
     json.dump(json_data, json_file)
 #with open ("inspection/restaurant_dataset3", "w") as myfile:    
-with open ("inspection/restaurant_dataset3_withoutPhone", "w") as myfile:
+with open ("inspection/restaurant_dataset3_empty", "w") as myfile:
     myfile.writelines(data1)
